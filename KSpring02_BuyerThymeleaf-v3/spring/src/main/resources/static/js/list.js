@@ -24,7 +24,7 @@ $(()=>{
     // const tableClickHandler = function() {   } // *좀 더 세련된 신버전.
     function tableClickHandler() {
         const id = $(this).data("id")
-        location.href = "/detail?userid=" + id
+        location.href = "/buyer/detail?userid=" + id
     }
     $("table.buyer_list tr").on("click", tableClickHandler)
 

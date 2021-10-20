@@ -7,8 +7,8 @@ import javax.persistence.Table
 
 // * 여기에 테이블 구조를 만들겠다는 것
 // * 내가 지금부터 엔티티를 선언할텐데 선언한 엔티티를 기준으로 이 테이블을 생성해라
-@Entity
-@Table(name="tbl_buyer", schema="naraDB")
+//@Entity
+//@Table(name="tbl_buyer", schema="naraDB")
 class BuyerEntity {
 
     // * 너는 지금부터 primary key야 !

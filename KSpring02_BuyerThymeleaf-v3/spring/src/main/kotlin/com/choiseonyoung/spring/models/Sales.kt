@@ -1,6 +1,6 @@
 package com.choiseonyoung.spring.models
 
-import java.sql.Date
+import java.util.*
 import javax.persistence.*
 
 /**

@@ -8,8 +8,8 @@ import javax.persistence.Table
 /**
  * DTO(VO) 클래스
  */
-//@Entity
-//@Table(name="tbl_buyer", schema="naraDB")
+@Entity
+@Table(name="tbl_buyer", schema="naraDB")
 data class Buyer(
     @Id
     @Column(columnDefinition = "CHAR(4)", nullable=false, unique = true, name="userid")
@@ -31,5 +31,5 @@ data class Buyer(
     var man_tel : String,
 
     @Column(nullable=true)
-    private val buy_total : Int = 0
+    var buy_total : Int
 )

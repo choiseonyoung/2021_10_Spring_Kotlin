@@ -8,7 +8,7 @@ interface BuyerService {
     fun findByName(name:String) : Array<Buyer>
     fun findByTel(name:String) : Array<Buyer>
 
-    fun insert(buyer:Buyer):Int
-    fun delete(userid:String):Int
-    fun update(buyer: Buyer):Int
+    fun insert(buyer: Buyer):Buyer
+    fun delete(userid: String):Buyer
+    fun update(buyer: Buyer):Buyer
 }

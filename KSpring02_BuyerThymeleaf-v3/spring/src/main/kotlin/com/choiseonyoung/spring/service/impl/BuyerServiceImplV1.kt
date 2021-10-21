@@ -32,7 +32,7 @@ class BuyerServiceImplV1(val bRepo: BuyerRepository):BuyerService {
 
 
     override fun selectAll(): Array<Buyer> {
-        return ConfigData.BUYER_LIST
+        return bRepo.findAll().toTypedArray()
     }
 
     override fun findById(userid: String): Buyer {

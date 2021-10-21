@@ -6,17 +6,16 @@
         }
 
         header {
-            background-color: aqua;
+            background-color: lightblue;
             padding:2rem;
             color:white;
             text-align: center;
-            text-shadow: 2px 2px 2px black;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            background-color: cadetblue;
+            background-color: gray;
         }
 
         nav li {
@@ -36,14 +35,10 @@
         }
 
         footer {
-            background-color:blue;
+            background-color:lightgray;
             color:white;
             text-align:center;
             padding:1rem;
-        }
-
-        div.btn_box {
-            text-align: right;
         }
 
         table.buyer_list {

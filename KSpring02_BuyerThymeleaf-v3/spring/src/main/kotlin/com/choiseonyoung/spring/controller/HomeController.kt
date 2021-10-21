@@ -2,6 +2,7 @@ package com.choiseonyoung.spring.controller
 
 import com.choiseonyoung.spring.ConfigData
 import com.choiseonyoung.spring.models.Buyer
+import com.choiseonyoung.spring.models.Sales
 import com.choiseonyoung.spring.service.BuyerService
 import com.choiseonyoung.spring.service.impl.BuyerServiceImplV1
 import org.springframework.beans.factory.annotation.Autowired
@@ -61,7 +62,6 @@ class HomeController {
 
         return bService.selectAll()
     }
-
 
 }
 

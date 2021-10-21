@@ -3,18 +3,24 @@ package com.choiseonyoung.spring.controller
 import com.choiseonyoung.spring.ConfigData
 import com.choiseonyoung.spring.models.Buyer
 import com.choiseonyoung.spring.service.BuyerService
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
 
 @Controller
 @RequestMapping(value=["/buyer"])
 class BuyerController(val bService:BuyerService) {
 
+    private val logger = LoggerFactory.getLogger(BuyerController::class.java)
+
     // @GetMapping(name="/list")
     @RequestMapping(value=["/list"],method=[RequestMethod.GET])
     fun list(model: Model):String {
+        
+        logger.debug("여기는 list 함수")
 
         val buyerList = bService.selectAll()
         model["BUYERS"] = buyerList
@@ -72,7 +78,37 @@ class BuyerController(val bService:BuyerService) {
         return "buyer/write"
     }
 
+    /**
+     * update를 실행할 때
+     * localhost:8080/buyer/update/userid 값으로 URL이 구성되어 있고
+     * update 화면에서 저장을 누르면
+     * 원래 요청했던 주소가 action이 되어 요청되므로
+     * 여기에서는 userid가 필요없지만 PathVariable로 설정해줘야 한다
+     */
+    @RequestMapping(value=["/update/{userid}"],method=[RequestMethod.POST])
+    fun update(redirectAttributes: RedirectAttributes, buyer:Buyer, @PathVariable("userid") userid: String):String {
+        bService.update(buyer)
 
+        /**
+         * redirect를 실행할 때 model 담긴 변수를
+         * queryString으로 부착하여 전송을 한다
+         * 
+         * 이 기능이 boot에서는 금지되고 같은 기능을 구현하기 위하여
+         * model 대신 RedirectAttributes를 사용한다
+         */
 
+        // localhostL8080/buyer/detail?userid=??? 형식으로 redirect 주소가 만들어진다
+        redirectAttributes["userid"]=buyer.userid.toString()
+
+        // redirectAttributes를 사용하지 않으면 아래처럼 작성해야 한다.
+        // return "redirect:/buyer/detail?userid=" + buyer.userid.toString()
+        return "redirect:/buyer/detail"
+    }
+
+    @RequestMapping(value=["/delete/{userid}"],method=[RequestMethod.GET])
+    fun delete(@PathVariable("userid") userid: String):String {
+        bService.delete(userid)
+        return "redirect:/buyer/list"
+    }
 
 }

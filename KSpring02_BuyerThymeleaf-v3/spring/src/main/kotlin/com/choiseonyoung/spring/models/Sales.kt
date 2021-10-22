@@ -2,6 +2,7 @@ package com.choiseonyoung.spring.models
 
 import java.util.*
 import javax.persistence.*
+import kotlin.jvm.Transient
 
 /**
  * Id 컬럼을 자동 증가 옵션으로 자동 생성하기
@@ -23,23 +24,27 @@ data class Sales(
     @Id
     @Column(columnDefinition = "BIGINT")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    var seq : Long,
-    var date : String,
-    var time : String,
-    var pname : String,
-    var qty : Int,
-    var amt : Int,
-    var total : Int,
+    var seq : Long?=null,
+    var userid : String?=null,
+    var date : String?=null,
+    var time : String?=null,
+    var pname : String?=null,
+    var qty : Int?=null,
+    var amt : Int?=null,
+    var total : Int?=null,
     
     // 데이터에 특별하게 Date(날짜, 시간형) 값을 사용하고 싶을 때
     // * 쌤 경험상 Date 형으로 컬럼 해놓으면 나중에 골치아픔..String으로 해놓는게 제일 편함
 
+    @Transient // table 생성할 때 컬럼에 추가하지 말라
     @Temporal(TemporalType.DATE)
-    var date1 : Date,
+    var date1 : Date?=null,
 
+    @Transient
     @Temporal(TemporalType.TIME)
-    var time1 : Date,
+    var time1 : Date?=null,
 
+    @Transient
     @Temporal(TemporalType.TIMESTAMP)
-    var date_time : Date
+    var date_time : Date?=null
 )

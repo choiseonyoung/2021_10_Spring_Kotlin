@@ -1,12 +1,12 @@
-section.buyer_detail {
+section.detail {
     width: 80vw;
     margin: 10px auto;
     display: flex;
 
-    border: 1px solid blue;
+    border: 1px solid lightgray;
 }
 
-section.buyer_detail div {
+section.detail div {
     display: flex;
     flex-wrap: wrap;
 
@@ -19,18 +19,18 @@ section.buyer_detail div {
     border: 1px solid lightgray;
 }
 
-section.buyer_detail label,
-section.buyer_detail span {
+section.detail label,
+section.detail span {
     padding: 0.5rem;
     margin: 0;
     border: 1px solid #ddd;
 }
 
-section.buyer_detail label {
+section.detail label {
     width: 30%;
     background-color: #eee;
 }
 
-section.buyer_detail span {
+section.detail span {
     width: 55%;
 }

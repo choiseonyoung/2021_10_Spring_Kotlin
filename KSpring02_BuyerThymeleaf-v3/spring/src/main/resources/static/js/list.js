@@ -23,9 +23,17 @@ $(()=>{
     // const tableClickHandler = () => {    } // *제이쿼리에서 쓰기는 좀 불편. 아래 2개 중 한개 쓰면 됨
     // const tableClickHandler = function() {   } // *좀 더 세련된 신버전.
     function tableClickHandler() {
+        const cname = $(this).attr("class")
         const id = $(this).data("id")
-        location.href = "/buyer/detail?userid=" + id
+        if(cname == "buyer_tr") {
+//            location.href = "/buyer/detail?userid=" + id
+              location.href =
+        } else if (cname == "order_tr") {
+            location.href = "/order/detail?seq=" + id
+        }
+
     }
     $("table.buyer_list tr").on("click", tableClickHandler)
+    $("table.order_list tr").on("click", tableClickHandler)
 
 })

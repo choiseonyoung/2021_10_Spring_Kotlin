@@ -28,3 +28,54 @@ WHERE userid = 'B002';
 -- 무결성 파괴 : 권한이 있는 사용자가 잘못하여 DB에 문제를 일으키는 것
 --             방지를 위하여 역할을 적절하게 부여하는 것이 좋다
 --             또한 PK 관리, FK 관리를 잘해야 한다
+
+
+
+
+DESC hibernate_sequence;
+
+SELECT * FROM tbl_buyer;
+
+-- 고객별로 몇번씩 거래했냐?
+SELECT userid, COUNT(userid) FROM tbl_sales
+GROUP BY userid;
+
+-- 고객별로 얼만큼씩 구입을 했나?
+SELECT userid, SUM(userid) FROM tbl_sales
+GROUP BY userid;
+
+-- 상품별로 몇번씩 판매되었나
+SELECT pname, count(pname) FROM tbl_sales
+GROUP BY pname
+ORDER BY count(pname) DESC;
+-- 상품별로 많이 판매된 것부터 순서대로
+
+-- 상품별로 총 몇개씩 판매가 되었나
+SELECT pname, sum(qty) FROM tbl_sales
+GROUP BY pname;
+
+-- 상품별로 총 판매금액이 얼마냐
+SELECT pname, sum(total) FROM tbl_sales
+GROUP BY pname;
+
+-- 고객별로 어떤 상품을 몇회 구입했나
+SELECT userid, pname, COUNT(*) FROM tbl_sales
+GROUP BY userid, pame
+ORDER BY userid, pname;
+
+-- 어떤 고객이 어떤 상품을 몇개씩 구매했나
+-- 많이 구매한 순으로 보여라
+SELECT userid, pname, COUNT(*) FROM tbl_sales
+GROUP BY userid, pname
+ORDER BY userid, SUM(QTY) DESC;
+
+SELECT userid, pname, SUM(total) FROM tbl_sales
+GROUP BY userid, pname
+ORDER BY userid, SUM(total) DESC;
+
+SELECT S.userid, B.name, pname, SUM(total)
+FROM tbl_sales S
+LEFT JOIN tbl_buyer B
+	ON S.userid = B.userid
+GROUP BY S.userid, B.name, pname
+ORDER BY S.userid, SUM(total) DESC;

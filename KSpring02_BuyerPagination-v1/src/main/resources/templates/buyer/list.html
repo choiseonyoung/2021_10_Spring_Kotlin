@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{/layout}"
+>
+
+<section layout:fragment="content" class="buyer_list">
+    <style>
+
+        button.btn_insert {
+            margin-right:calc(20% - 16px);
+            margin-top:5px;
+            margin-bottom : 5px;
+        }
+
+        section.buyer_list div.nextPage {
+            background-color: green;
+            color:white;
+            padding:1rem;
+            text-align: center;
+            cursor:pointer;
+        }
+
+        .page_box {
+            display: flex;
+            width: 700px;
+            margin: 30px auto;
+            justify-content: center;
+        }
+
+        .page_box div {
+            width: 30px;
+            height: 30px;
+            margin: 30px;
+            background-color: #eee;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+    </style>
+    <table class="list buyer_list">
+        <thead>
+        <tr>
+            <th>고객ID</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>주소</th>
+            <th>담당자명</th>
+            <th>담당자전화번호</th>
+            <th>매출합계(만원)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="buyer_tr" th:each="BUYER : ${BUYERS}" th:data-id="${BUYER.userid}">
+            <td th:text="${BUYER.userid}">B001</td>
+            <td th:text="${BUYER.name}">롯데상사</td>
+            <td th:text="${BUYER.tel}">02-222-9999</td>
+            <td th:text="${BUYER.address}">서울시 영등포구</td>
+            <td th:text="${BUYER.manager}">홍길동</td>
+            <td th:text="${BUYER.man_tel}">010-9999-8766</td>
+            <td th:text="${BUYER.buy_total}">91,000</td>
+        </tr>
+        </tbody>
+    </table>
+    <!--    <div class="nextPage">더 보기</div>-->
+    <div class="btn_box">
+
+        <th:block th:replace="~{/fragment/page_nav :: pageNav(${BUYERS})}"></th:block>
+<!--            템플릿을 root로 생성해서 그 안에있는 page_nav 를 가져오도록 해줌 -->
+
+        <div class="nextPage">더보기</div>
+        <button class="btn_insert">고객등록</button>
+    </div>
+    <script>
+    $(function(){
+
+        let currentPage = 0;
+        let lastPage = false
+
+        $("button.btn_insert").on("click",function(){
+            location.href =`${rootPath}/buyer/insert`
+        })
+
+        $("div.nextPage").on("click",function(){
+
+            if(lastPage) {
+                alert("끝 페이지 입니다")
+                return false
+            }
+
+            /**
+             *  project 에 context-path 가 설정되어 있을 때는
+             *  ${rootPath}/buyer/sub_page 와 같이 사용해도 문제가 없다
+             *
+             *  context-path 가 설정이 되어 있지 않을 때
+             *  ${rootPath}buyer/sub_page
+             *  http://buyer/sub_page
+             */
+
+            // jQuery.ajax
+            $.ajax ({
+                    url : `${rootPath}/buyer/sub_page`,
+                    data : {page: ++currentPage},
+                    method : "GET"
+            })
+            .done(function(result){
+                lastPage = result.last
+                $("table.buyer_list tbody").append(result)
+<!--                tbody에 쌓여있는 곳 끝에 이걸 추가하라 -->
+            })
+        })
+      })
+
+
+    </script>
+
+</section>
+
+</html>

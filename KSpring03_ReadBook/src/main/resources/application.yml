@@ -1,0 +1,14 @@
+# Optional<List<String>> config = new Optional<List<String>>();
+# config.add("classpath:app-jpa.yml")
+# config.add("classpath:app-dbms.yml"])
+# *config 변수에 이렇게 담는 것과 같다
+spring:
+  config.import: >
+    optional:classpath:app-dbms.yml,
+    classpath:app-jpa.yml
+  mvc:
+    static-path-pattern: /static/**
+    web:
+      resources:
+        static-locations: classpath:static/
+        add-mappings: true

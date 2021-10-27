@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 95vw;
+    height: 20vh;
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #F3E9E4;
+}
+
+header h1,
+header h2{
+    margin: auto;
+    line-height: 10vh;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.section_write {
+    width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.input_1,
+.input_2,
+.input_title,
+.input_content {
+    display: flex;
+    width: 100%;
+}
+
+.input_1,
+.input_2 {
+    justify-content: space-between;
+}
+
+.input_title,
+.input_content {
+    justify-content: center;
+}
+
+.input_1 input,
+.input_2 input,
+.input_title input,
+.input_content input {
+    height: 30px;
+    margin: 10px 10px;
+    padding: 15px;
+    border: 1px solid lightgray;
+}
+
+.input_1 input {
+    width: 50%;
+}
+
+.input_2 input:nth-of-type(1) {
+    width: 50%;
+}
+
+.input_2 input:nth-of-type(2),
+.input_2 input:nth-of-type(3) {
+    width: 25%;
+}
+
+.input_title input,
+.input_content input {
+    width: 100%;
+}
+
+.input_content input {
+    height: 200px;
+}
+
+.btn_box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    width: 70px;
+    height: 30px;
+    background-color: #BDAFBF;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+}

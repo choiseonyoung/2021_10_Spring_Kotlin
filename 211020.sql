@@ -79,3 +79,7 @@ LEFT JOIN tbl_buyer B
 	ON S.userid = B.userid
 GROUP BY S.userid, B.name, pname
 ORDER BY S.userid, SUM(total) DESC;
+
+
+SELECT * FROM tbl_book;
+SELECT * FROM tbl_readbook;

@@ -1,5 +1,7 @@
 spring:
   jpa:
+    hibernate:
+      ddl-auto: create
     database-platform: org.hibernate.dialect.MySQL8Dialect
     database: mysql
     properties:

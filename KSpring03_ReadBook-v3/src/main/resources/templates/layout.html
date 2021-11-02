@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout">
+<!--    * xmlns:th="http://www.thymeleaf.org" 이게 정상적으로 다운로드가 돼서 적용이 되면 th로 시작되는 태그들 자동완성 됨-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    * viewport를 디바이스 크기의 1:1로 설정해라-->
+    <script src="https://code.jquery.com/jquery-lastest.min.js"></script>
+<!--    * jquery의 최신 버전을 쓰겠다. jqeury의 최신 버전을 가져와라-->
+    <script th:inline="javascript">
+        const rootPath = /*[[@{/}]]*/
+    </script>
+<!--    * 자바스크립트에서 타임리프를 쓰겠다-->
+<!--    * 모든 자바스크립트에서 이 rootPath라는 값을 쓸 수 있게 됨-->
+    <link rel="stylesheet" th:href="@{/static/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/form.css}"/>
+    <title>똑소리 독서록</title>
+</head>
+<body>
+    <th:block th:replace="fragment/headerAndFooter :: headerFragment"></th:block>
+    <!-- * include 하겠다 -->
+    <th:block layout:fragment="content"></th:block>
+    <!-- * 끌어올리기-->
+    <th:block th:replace="fragment/headerAndFooter :: footerFragment"></th:block>
+</body>
+</html>

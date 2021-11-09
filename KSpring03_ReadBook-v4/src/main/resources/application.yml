@@ -1,0 +1,31 @@
+server:
+  servlet:
+    context-path: /readbook
+
+spring:
+  mvc:
+    static-path-pattern: "/static/**"
+  web:
+    resource:
+      static-loactions: "classpath:static/"
+      add-mappings: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/naraDB
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: "!Biz12341234"
+
+logging:
+  level:
+    root: debug
+    com.choiseonyoung.readbook: debug

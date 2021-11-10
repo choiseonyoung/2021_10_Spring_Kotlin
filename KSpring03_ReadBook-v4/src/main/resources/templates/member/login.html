@@ -1,0 +1,33 @@
+<html lang="ko"
+      xmlns:layout="http://www.ultrag.net.nz/thymeleaf/layout"
+      layout:decorator="~{/layout}">
+
+<section layout:fragment="content" class="content">
+    <form method="POST" class="login_form" th:action="@{/login}">
+        <fieldset>
+            <div class="input error" th:if="${param.error}">
+                로그인 실패 : 아이디 또는 비밀번호를 다시 확인하세요
+            </div>
+            <div class="input error"
+                 th:if="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message}"
+                 th:text="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message}">
+            </div>
+            <div class="input">
+                <input placeholder="ID" name="username"/>
+            </div>
+            <div class="input">
+                <input placeholder="PASSWORD" type="password" name="password"/>
+            </div>
+            <div class="input">
+                <div>
+                    <input type="checkbox"/>
+                    <label>로그인 유지하기(Remember ME)</label>
+                </div>
+            </div>
+            <div class="input btn_box left">
+                <button class="btn login">로그인</button>
+            </div>
+        </fieldset>
+    </form>
+</section>
+</html>
